@@ -7,6 +7,7 @@ public class Main {
         for(int i = 0; i < 10; i++){
             smallGraph.addVertex(new Vertex(i));
         }
+
         smallGraph.addEdge(0, 1);
         smallGraph.addEdge(0, 2);
         smallGraph.addEdge(1, 3);

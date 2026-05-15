@@ -63,7 +63,7 @@ public class Experiment {
     }
 
     public void printResults() {
-        System.out.println("\n========== RESULTS TABLE ==========");
+        System.out.println("RESULTS TABLE");
         System.out.printf("%-15s %-20s %-20s%n", "Graph Size", "BFS Time (ns)", "DFS Time (ns)");
         System.out.println("---------------------------------------------------");
 

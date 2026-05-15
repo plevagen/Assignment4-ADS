@@ -16,7 +16,7 @@ public class Graph {
 
     public void addEdge(int from, int to) {
         if (from < vertices.size() && to < vertices.size()) {
-            adjacencyList.get(from).get(to);
+            adjacencyList.get(from).add(to);
         }
     }
 
