@@ -177,25 +177,14 @@ printGraph() iterates through every vertex and prints its neighbor list. getSize
 
 1. DEPTH-FIRST SEARCH
 
-Description: Depth-First Search  an algorithm for traversing a graph or tree. It works like a recursive algorithm
-
-How it works:
-
-1. Select the desired vertex and mark the initial vertex as visited, add it to the stack
-2. We are looking for neighboring, untested vertices.
-3. If such a vertex is found, then mark it, add it to the stack, resuming step 2 4
-4. If the vertex at the top of the stack has no unvisited neighbors:
-1) Remove it from the stack.
-2) If the stack is empty, the program ends (the target is not found).
-3) If the stack is not empty, go back to step 2 (the previous vertex is now active).
+Description: Depth-First Search  an algorithm for traversing a graph or tree.It works like a recursive algorithm. DFS explores as deep as possible along each branch before backtracking. It commits fully to one path before trying another. Uses a stack as vertex storage.
 
 Graph: ![Graph Case.png](docs/screenshots/Graph%20Case.png)
 
 Step-By-Step work:
-
 ```
 We started from vertex 0. 
-Visit 0 -> Go to neighbor 1  
+Visit 0 -> Go to neighbor 1
 Visit 1 -> Go to neighbor 3 
 Visit 3 -> Go to neighbor 7  
 Visit 7 -> no unvisited neighbors -> return to 3
@@ -211,6 +200,9 @@ Visit 5 -> Go to neighbor 9
 Visit 9 -> no unvisited neighbors -> return to 5
 Visit 5 -> no unvisited neighbors -> return to 2
 Visit 2 -> no unvisited neighbors -> return to 0
+
+Note: It was a case of bypassing the graph. When a certain vertex is found, the algorithm works the same way,
+only when the desired vertex is found, it completes its work.
 ```
 
 Time Complexity: O(V+E) - each edge and vertex is checked at least once
@@ -225,3 +217,9 @@ Use cases:
 
 --- 
 2. BREADTH-FIRST SEARCH
+
+Description: The breadth-first search algorithm explores the graph by levels: first, it explores the neighbors of the starting point, then the neighbors of the neighbors, and so on until there are no unexplored neighbors left. A Queue is used as vertex storage. Not recursive, unlike a DFS
+
+Step-By-Step:
+
+```
