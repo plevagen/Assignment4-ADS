@@ -171,3 +171,57 @@ How it's works:
 When addVertex(v) is called, the vertex is appended to vertices and a new empty ArrayList<Integer> is appended to adjacencyList. When addEdge(from, to) is called, to is appended to adjacencyList.get(from).
 The bounds check from < vertices.size() && to < vertices.size() prevents IndexOutOfBoundsException if invalid IDs are passed.
 printGraph() iterates through every vertex and prints its neighbor list. getSize() returns vertices.size() — used by Experiment Class to label performance results.
+
+---
+# C. ALGORITHM DESCRIPTION
+
+1. DEPTH-FIRST SEARCH
+
+Description: Depth-First Search  an algorithm for traversing a graph or tree. It works like a recursive algorithm
+
+How it works:
+
+1. Select the desired vertex and mark the initial vertex as visited, add it to the stack
+2. We are looking for neighboring, untested vertices.
+3. If such a vertex is found, then mark it, add it to the stack, resuming step 2 4
+4. If the vertex at the top of the stack has no unvisited neighbors:
+1) Remove it from the stack.
+2) If the stack is empty, the program ends (the target is not found).
+3) If the stack is not empty, go back to step 2 (the previous vertex is now active).
+
+Graph: ![Graph Case.png](docs/screenshots/Graph%20Case.png)
+
+Step-By-Step work:
+
+```
+We started from vertex 0. 
+Visit 0 -> Go to neighbor 1  
+Visit 1 -> Go to neighbor 3 
+Visit 3 -> Go to neighbor 7  
+Visit 7 -> no unvisited neighbors -> return to 3
+Visit 3 -> no unvisited neighbors -> return to 1 
+Visit 1 -> Go to neighbor 4
+Visit 4 -> no unvisited neighbors -> return to 1
+Visit 1 -> no unvisited neighbors -> return to 0
+Visit 0 -> Go to neighbor 2
+Visit 2 -> Go to neighbor 6
+Visit 6 -> no unvisited neighbors -> return to 2
+Visit 2 -> Go to neighbor 5 
+Visit 5 -> Go to neighbor 9
+Visit 9 -> no unvisited neighbors -> return to 5
+Visit 5 -> no unvisited neighbors -> return to 2
+Visit 2 -> no unvisited neighbors -> return to 0
+```
+
+Time Complexity: O(V+E) - each edge and vertex is checked at least once
+
+Space Complexity: O(V) - the recursive call stack depth is bounded by the depth of the graph.
+
+Use cases:
+1) Cycle detection in graphs.
+2) Topological sorting of directed acyclic graphs (e.g., build system dependency resolution).
+3) Solving mazes (explore one path fully before backtracking).
+4) Finding connected components.
+
+--- 
+2. BREADTH-FIRST SEARCH
