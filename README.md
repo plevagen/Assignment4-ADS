@@ -166,10 +166,9 @@ Time Complexity: O(V+E) - each edge and vertex is checked at least once
 Space Complexity: O(V) - the recursive call stack depth is bounded by the depth of the graph.
 
 Use cases:
-1) Cycle detection in graphs.
-2) Topological sorting of directed acyclic graphs (e.g., build system dependency resolution).
-3) Solving mazes (explore one path fully before backtracking).
-4) Finding connected components.
+1. Checking the path for certain routes
+2. For logic games (in particular, building a tree of possible moves in a maze)
+3. Topological sorting of nodes in a linear sequence
 
 --- 
 2. BREADTH-FIRST SEARCH
