@@ -80,13 +80,17 @@ Some features of the class:
 
 The main class of the project. Connects the Vertex and Edge classes, actually implementing the graph model. The BFS and DFS algorithms are also implemented in this class.
 
-Code:
-``` 
-import java.util.*;
+4. ADJACENCY LIST:
 
+Adjacency list is a way to represent a graph in which a list of adjacent vertices is stored for each vertex.
+
+How it's works:
+
+Code: 
+``` 
 public class Graph {
-private ArrayList<Vertex> vertices;
-private ArrayList<ArrayList<Integer>> adjacencyList;
+    private ArrayList<Vertex> vertices;
+    private ArrayList<ArrayList<Integer>> adjacencyList;
 
     public Graph() {
         vertices = new ArrayList<>();
@@ -97,79 +101,31 @@ private ArrayList<ArrayList<Integer>> adjacencyList;
         vertices.add(v);
         adjacencyList.add(new ArrayList<>());
     }
-
+    
     public void addEdge(int from, int to) {
         if (from < vertices.size() && to < vertices.size()) {
             adjacencyList.get(from).add(to);
         }
     }
 
-    public void printGraph() {
+```
+Both ArrayLists are kept in sync by index:
+1) vertices.get(i) → the Vertex object with id = i
+2) adjacencyList.get(i) → a list of integer IDs that vertex i connects to.
+
+When addVertex(v) is called, the vertex is appended to vertices and a new empty ArrayList<Integer> is appended to adjacencyList. When addEdge(from, to) is called, to is appended to adjacencyList.get(from).
+The bounds check from < vertices.size() && to < vertices.size() prevents IndexOutOfBoundsException if invalid IDs are passed.
+
+```
+public void printGraph() {
         System.out.println("Graph Structure");
         for (int i = 0; i < vertices.size(); i++) {
             System.out.print("Vertex " + i + "->");
             System.out.println(adjacencyList.get(i));
         }
     }
-
-    public void bfs(int start) {
-        boolean[] visited = new boolean[vertices.size()];
-        Queue<Integer> queue = new LinkedList<>();
-
-        visited[start] = true;
-        queue.add(start);
-
-        System.out.print("BFS traversal: ");
-
-        while (!queue.isEmpty()) {
-            int cur = queue.poll();
-            System.out.println(cur + " ");
-
-            for (int neighbor : adjacencyList.get(cur)) {
-                if (!visited[neighbor]) {
-                    visited[neighbor] = true;
-                    queue.add(neighbor);
-                }
-            }
-        }
-        System.out.println();
-    }
-
-    public void dfs(int start) {
-        boolean[] visited = new boolean[vertices.size()];
-        System.out.println("DFS traversal");
-        dfsHelper(start, visited);
-        System.out.println();
-    }
-
-    private void dfsHelper(int cur, boolean[] visited) {
-        visited[cur] = true;
-        System.out.println(cur + " ");
-
-        for (int neighbor : adjacencyList.get(cur)) {
-            if (!visited[neighbor]) {
-                dfsHelper(neighbor, visited);
-            }
-        }
-    }
-
-    public int getSize(){
-        return vertices.size();
-    }
-}
 ```
 
-4. ADJACENCY LIST:
-
-Adjacency list is a way to represent a graph in which a list of adjacent vertices is stored for each vertex.
-
-How it's works:
-
-1) vertices.get(i) → the Vertex object with id = i
-2) adjacencyList.get(i) → a list of integer IDs that vertex i connects to.
-
-When addVertex(v) is called, the vertex is appended to vertices and a new empty ArrayList<Integer> is appended to adjacencyList. When addEdge(from, to) is called, to is appended to adjacencyList.get(from).
-The bounds check from < vertices.size() && to < vertices.size() prevents IndexOutOfBoundsException if invalid IDs are passed.
 printGraph() iterates through every vertex and prints its neighbor list. getSize() returns vertices.size() — used by Experiment Class to label performance results.
 
 ---
