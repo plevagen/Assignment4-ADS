@@ -230,3 +230,41 @@ Running Experiment in different sizes:
 ![Running Experiment in different sizes.png](docs/screenshots/Running%20Experiment%20in%20different%20sizes.png)
 Result of Experiment:
 ![Results of Experiment.png](docs/screenshots/Results%20of%20Experiment.png)
+---
+# E. ANALYSIS QUESTIONS
+
+1. Question: How does graph size affect BFS and DFS performance?
+
+Answer: The graph size has the same effect on the running time of DFS and BFS, but it changes the memory requirement:
+1) BFS uses a queue as vertex memory storage. In graphs with a large width, the queue overflows and there is a shortage of memory.
+2) DFS uses a stack. The amount of memory is proportional to the length of the longest path in the graph, so for narrow and long, as well as very deep graphs, DFS requires much less memory than BFS.
+
+---
+2. Question: Which traversal is faster in your experiments?
+
+Answer: For graphs with a size of 10 and 100, DFS showed faster results, whereas BFS worked faster with a graph with a size of 30. BFS requires queue.add() and queue.poll() on a LinkedList, which involve heap allocations and pointer updates. DFS uses the Java call stack directly - no explicit data structure manipulation, which has lower overhead for the graph sizes tested.
+
+---
+3. Question: Do results match the expected complexity O(V + E)?
+
+Answer: Yes. As can be seen from the experimental results, time grows linearly in graphs from a smaller size to a larger one.
+
+---
+4. Question: How does graph structure affect traversal order?
+
+Answer: The skip-3 edges mean BFS and DFS produce different results compared to a simple chain. BFS reaches vertex 3 immediately from vertex 0 (via the skip edge), before finishing exploration of vertex 1's subtree. DFS follows the chain edge to vertex 1 first, dives deep, and only discovers the skip edges later during backtracking.
+
+---
+5. Question: When is BFS preferred over DFS?
+
+Answer: BFS is preferred over DFS when:
+1) It is necessary to find the shortest path of two vertices
+2) The goal of the algorithm is closer to the beginning
+3) The graph is broader in structure, but not deeper
+---
+6. Question: What are the limitations of DFS?
+
+Answer: DFS has limitations in the following:
+1) Stack overflow in very deep graphs - the algorithm must first traverse the graph to the end and then go backwards, which entails the risk of stack overflow in very deep graphs
+2) It can use the first available path to the goal, which leads to an extremely inefficient search for the shortest path.
+3) Different edge insertion sequences produce completely different traversal orders.
