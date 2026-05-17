@@ -155,6 +155,7 @@ Visit 8 -> Looking unvisited neighbors -> No unvisited neighbors -> return to 5
 Visit 5 -> Looking unvisited neighbors -> No unvisited neighbors -> return to 2
 Visit 2 -> Looking unvisited neighbors -> No unvisited neighbors -> return to 0
 
+DFS output: [0, 1, 3, 6, 9, 4, 7, 2, 5, 8]
 
 Note: It was a case of bypassing the graph. When a certain vertex is found, the algorithm works the same way,
 only when the desired vertex is found, it completes its work.
@@ -188,6 +189,8 @@ Visit 6 -> Added a neighbors of 6: (9) -> Remove 6 from queue -> [7,8,9]
 Visit 7 -> No neighbors for ad -> Remove 7 from queue -> [8, 9]
 Visit 8 -> No neighbors for ad -> Remove 8 from queue -> [9]
 Visit 9 -> No neighbors for ad -> Remove 9 from queue -> []
+
+BFS: [0, 1, 2, 3, 4, 5, 6, 7, 8, 9]
 ```
 
 Time Complexity: O(V+E) - works the same way as DFS
@@ -202,3 +205,28 @@ Use cases:
 ---
 # D. EXPERIMENTAL RESULTS
 
+Graph Structure:
+
+For demonstrating results on different graphs, we create graphs with two types of edges:
+1. Chain edges: 0 -> 1, 1 -> 2, ..., (n-2) -> (n-1)
+2. Skip-3 edges: 0 -> 3, 3 -> 6, 6 -> 9, ...
+
+For n = 10, vertex 0 has neighbors [1, 3], vertex 3 has neighbors [4, 6], etc. The skip-3 edges create shortcuts, making the graph more realistic and the traversal orders non-trivial.
+
+Results:
+```
+Graph Size      BFS Time (ns)        DFS Time (ns)
+---------------------------------------------------
+10              408456               252799              
+30              776824               915512              
+100             1978868              1567398    
+```
+
+Screenshots:
+Demonstration Experiment on small graph:
+![Demonstration on small graph.png](docs/screenshots/Demonstration%20on%20small%20graph.png)
+Running Experiment in different sizes:
+![REDF.png](docs/screenshots/REDF.png)
+![Running Experiment in different sizes.png](docs/screenshots/Running%20Experiment%20in%20different%20sizes.png)
+Result of Experiment:
+![Results of Experiment.png](docs/screenshots/Results%20of%20Experiment.png)
