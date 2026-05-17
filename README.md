@@ -135,27 +135,26 @@ printGraph() iterates through every vertex and prints its neighbor list. getSize
 
 Description: Depth-First Search  an algorithm for traversing a graph or tree.It works like a recursive algorithm. DFS explores as deep as possible along each branch before backtracking. It commits fully to one path before trying another. Uses a stack as vertex storage.
 
-Graph for Step-By-Step demonstration: ![Graph Case.png](docs/screenshots/Graph%20Case.png)
+Graph for Step-By-Step demonstration: ![Graph Example.png](docs/screenshots/Graph%20Example.png)
 
 Step-By-Step work:
 ```
 We started from vertex 0. 
-Visit 0 -> Go to neighbor 1
-Visit 1 -> Go to neighbor 3 
-Visit 3 -> Go to neighbor 7  
-Visit 7 -> no unvisited neighbors -> return to 3
-Visit 3 -> no unvisited neighbors -> return to 1 
-Visit 1 -> Go to neighbor 4
-Visit 4 -> no unvisited neighbors -> return to 1
-Visit 1 -> no unvisited neighbors -> return to 0
-Visit 0 -> Go to neighbor 2
-Visit 2 -> Go to neighbor 6
-Visit 6 -> no unvisited neighbors -> return to 2
-Visit 2 -> Go to neighbor 5 
-Visit 5 -> Go to neighbor 9
-Visit 9 -> no unvisited neighbors -> return to 5
-Visit 5 -> no unvisited neighbors -> return to 2
-Visit 2 -> no unvisited neighbors -> return to 0
+Visit 0 -> Looking unvisited neighbors -> Go to neighbor 1
+Visit 1 -> Looking unvisited neighbors -> Go to neighbor 3 
+Visit 3 -> Looking unvisited neighbors -> Go to neighbor 6
+Visit 6 -> Looking unvisited neighbors -> Go to neighbor 9
+Visit 9 -> Looking unvisited neighbors -> No unvisited neighbors -> return to 6
+Visit 6 -> Looking unvisited neighbors -> No unvisited neighbors -> return to 3
+Visit 3 -> Looking unvisited neighbors -> No unvisited neighbors -> return to 1
+Visit 1 -> Looking unvisited neighbors -> No unvisited neighbors -> return to 0
+Visit 0 -> Looking unvisited neighbors -> Go to neighbor 2
+Visit 2 -> Looking unvisited neighbors -> Go to neighbor 5
+Visit 5 -> Looking unvisited neighbors -> Go to neighbor 8
+Visit 8 -> Looking unvisited neighbors -> No unvisited neighbors -> return to 5
+Visit 5 -> Looking unvisited neighbors -> No unvisited neighbors -> return to 2
+Visit 2 -> Looking unvisited neighbors -> No unvisited neighbors -> return to 0
+
 
 Note: It was a case of bypassing the graph. When a certain vertex is found, the algorithm works the same way,
 only when the desired vertex is found, it completes its work.
@@ -173,8 +172,33 @@ Use cases:
 --- 
 2. BREADTH-FIRST SEARCH
 
-Description: The breadth-first search algorithm explores the graph by levels: first, it explores the neighbors of the starting point, then the neighbors of the neighbors, and so on until there are no unexplored neighbors left. A Queue is used as vertex storage. Not recursive, unlike a DFS
+Description: The breadth-first search algorithm explores the graph by levels: first, it explores the neighbors of the starting point, then the neighbors of the neighbors, and so on until there are no unexplored neighbors left. After adding the neighbors of a vertex, the previous vertex is deleted. A Queue is used as vertex storage. After adding the neighbors of a vertex, the previous vertex is deleted. This is necessary to free up space in the queue so that the algorithm works correctly. BFS operates on the FIFO(First In, First Out) principle. Not recursive, unlike a DFS
 
 Step-By-Step:
 
 ```
+Start from 0 -> Add 0 to queue -> [0] 
+Visit 0 -> Added a neighbors of 0: (1,2) -> Remove 0 from queue -> [1,2]
+Visit 1 -> Added a neigbors of 1: (3,4) -> Remove 1 from queue -> [2,3,4]
+Visit 2 -> Added a neigbors of 2: (5) -> Remove 2 from queue -> [3,4,5]
+Visit 3 -> Added a neigbors of 3: (6) -> Remove 3 from queue -> [4,5,6]
+Visit 4 -> Added a neigbors of 4: (7) -> Remove 4 from queue -> [5,6,7]
+Visit 5 -> Added a neigbors of 5: (8) -> Remove 5 from queue -> [6,7,8]
+Visit 6 -> Added a neighbors of 6: (9) -> Remove 6 from queue -> [7,8,9]
+Visit 7 -> No neighbors for ad -> Remove 7 from queue -> [8, 9]
+Visit 8 -> No neighbors for ad -> Remove 8 from queue -> [9]
+Visit 9 -> No neighbors for ad -> Remove 9 from queue -> []
+```
+
+Time Complexity: O(V+E) - works the same way as DFS
+
+Space Complexity: O(V) - the visited array and queue each hold at most V elements
+
+Use cases: 
+1. Finding the shortest path in unweighted graphs
+2. Level-order tree traversal
+3. Using network protocols to send packets or messages to all network nodes.
+
+---
+# D. EXPERIMENTAL RESULTS
+
