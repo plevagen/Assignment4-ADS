@@ -135,7 +135,7 @@ printGraph() iterates through every vertex and prints its neighbor list. getSize
 
 Description: Depth-First Search  an algorithm for traversing a graph or tree.It works like a recursive algorithm. DFS explores as deep as possible along each branch before backtracking. It commits fully to one path before trying another. Uses a stack as vertex storage.
 
-Graph for Step-By-Step demonstration: ![Graph Example.png](docs/screenshots/Graph%20Example.png)
+Graph for Step-By-Step demonstration: ![Graph Example.png](docs/diagrams/Graph%20Example.png)
 
 Step-By-Step work:
 ```
