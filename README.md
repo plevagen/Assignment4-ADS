@@ -268,3 +268,10 @@ Answer: DFS has limitations in the following:
 1) Stack overflow in very deep graphs - the algorithm must first traverse the graph to the end and then go backwards, which entails the risk of stack overflow in very deep graphs
 2) It can use the first available path to the goal, which leads to an extremely inefficient search for the shortest path.
 3) Different edge insertion sequences produce completely different traversal orders.
+
+---
+# D. REFLECTION SECTION
+
+This assignment has significantly expanded my knowledge of graphs and algorithms for traversing them. In particular, I learned in detail about DFS and BFS that both algorithms work the same way in time, but they have very different memory requirements. I was also greatly helped by the implementation of these graphs in practice. This contributed to the fact that I began to perceive graphs not as an abstract concept, but as an important part in algorithms and data structures.
+
+The most difficult part for me was the implementation of the visited DFS array. Because dfsHelper is recursive, the visited array must be created once in dfs() and passed as a parameter to every recursive call. If it were declared inside dfsHelper, it would reset on every call and the algorithm would revisit vertices indefinitely on any graph with cycles. The realization that recursive algorithms should carefully plan the overall state of stack variability amazed me.
